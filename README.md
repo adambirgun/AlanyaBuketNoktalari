@@ -4,9 +4,14 @@ Alanya’daki Balcony Flowers buket satış noktalarını haritada gösteren web
 
 **Canlı sayfa:** https://adambirgun.github.io/AlanyaBuketNoktalari/
 
-## Sitenize gömme (iframe)
+## Güvenlik
 
-Kendi sitenizde bir sayfa veya bölüm olarak şöyle gömebilirsiniz:
+- **API anahtarı yok.** Google Maps SDK kullanılmaz; harita OpenStreetMap + CARTO ile çalışır.
+- Repoda `.env` / secret tutulmaz. Public GitHub Pages için anahtar sızıntısı riski yoktur.
+- Yol tarifi tıklanınca kullanıcının kendi tarayıcısında Google Maps açılır (harici link; anahtar gerekmez).
+- Marker ikonları yalnızca `public/` altındaki yerel dosyalardır.
+
+## Sitenize gömme (iframe)
 
 ```html
 <iframe
@@ -19,28 +24,22 @@ Kendi sitenizde bir sayfa veya bölüm olarak şöyle gömebilirsiniz:
 ></iframe>
 ```
 
-- `allow="geolocation"` “en yakın nokta” özelliğinin iframe içinde çalışması için gerekli.
-- WordPress / Elementor / özel HTML bloklarına aynı kodu yapıştırabilirsiniz.
-
 ## Yerel çalıştırma
 
-1. `npm install`
-2. `.env.example` dosyasını `.env.local` olarak kopyalayın ve `VITE_GOOGLE_MAPS_API_KEY` değerini girin
-3. `npm run dev`
+```bash
+npm install
+npm run dev
+```
 
-## GitHub Pages yayınlama
+## Yayınlama
 
-Push sonrası GitHub Actions otomatik derleyip yayınlar.
+`main` kaynağı güncellendikten sonra production build `gh-pages` dalına statik olarak yayınlanır:
 
-1. Repo secret ekleyin: **Settings → Secrets and variables → Actions → New repository secret**
-   - Name: `VITE_GOOGLE_MAPS_API_KEY`
-   - Value: Google Maps API anahtarınız
-2. Google Cloud’da anahtarın HTTP referrer kısıtlarına şunları ekleyin:
-   - `https://adambirgun.github.io/*`
-   - Sitenizin domain’i (ör. `https://siteniz.com/*`)
-   - Yerel test için: `http://localhost:3000/*`
-3. `main` dalına push edin veya Actions’tan **Deploy to GitHub Pages** workflow’unu manuel çalıştırın
+```bash
+npm run build
+# dist içeriği GitHub Pages (gh-pages) olarak deploy edilir
+```
 
 ## Teknoloji
 
-React + Vite + Tailwind + Google Maps (`@vis.gl/react-google-maps`)
+React + Vite + Tailwind + Leaflet (OpenStreetMap)

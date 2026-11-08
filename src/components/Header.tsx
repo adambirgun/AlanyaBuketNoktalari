@@ -1,4 +1,5 @@
 import { Phone, Globe, Instagram, MapPin } from 'lucide-react';
+import { ICONS } from '../lib/assets';
 
 interface HeaderProps {
   totalStoresCount: number;
@@ -20,14 +21,9 @@ export function Header({ totalStoresCount }: HeaderProps) {
             >
               <div className="w-full h-full rounded-full bg-[#0f2b1d] flex items-center justify-center overflow-hidden">
                 <img
-                  src="/balcony.png"
+                  src={ICONS.balcony()}
                   alt="Balcony Flowers"
                   className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    target.style.display = 'none';
-                    if (target.parentElement) target.parentElement.innerHTML = '🌸';
-                  }}
                 />
               </div>
             </a>

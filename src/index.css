@@ -75,3 +75,120 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(214, 184, 95, 0.7);
 }
+
+/* Leaflet map shell */
+.store-map.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #dce8df;
+  font: inherit;
+}
+
+.store-map .leaflet-control-attribution {
+  background: rgba(15, 43, 29, 0.82) !important;
+  color: rgba(247, 245, 237, 0.75);
+  font-size: 10px;
+  max-width: 55%;
+}
+
+.store-map .leaflet-control-attribution a {
+  color: #d6b85f;
+}
+
+.balcony-map-marker,
+.user-location-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.marker-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateZ(0);
+}
+
+.marker-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: rgba(214, 184, 95, 0.45);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.marker-icon-shell {
+  position: relative;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
+}
+
+.marker-wrap.is-selected .marker-icon-shell {
+  transform: scale(1.12) translateY(-2px);
+  filter: drop-shadow(0 8px 16px rgba(214, 184, 95, 0.65));
+}
+
+.marker-icon-shell img {
+  display: block;
+  object-fit: contain;
+  background: transparent;
+  pointer-events: none;
+  user-select: none;
+}
+
+.marker-star {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #d6b85f;
+  color: #0f2b1d;
+  font-size: 9px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.marker-label {
+  margin-top: 2px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #f7f5ed;
+  background: rgba(15, 43, 29, 0.88);
+  border: 1px solid rgba(214, 184, 95, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.marker-wrap.is-selected .marker-label {
+  background: #d6b85f;
+  color: #0f2b1d;
+  border-color: rgba(15, 43, 29, 0.35);
+  font-weight: 700;
+}
+
+.user-dot-wrap {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #0ea5e9;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}

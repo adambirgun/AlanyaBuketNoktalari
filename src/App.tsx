@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
+import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet';
 import { 
   STORES, 
   ALANYA_CENTER, 
@@ -14,7 +14,7 @@ import { Header } from './components/Header';
 import { StoreListPanel } from './components/StoreListPanel';
 import { MapMarker } from './components/MapMarker';
 import { MapController } from './components/MapController';
-import { QuotaBanner } from './components/QuotaBanner';
+import { UserLocationMarker } from './components/UserLocationMarker';
 import { LocationErrorModal } from './components/LocationErrorModal';
 import { 
   Navigation, 
@@ -29,8 +29,14 @@ import {
   X,
   Phone
 } from 'lucide-react';
+import 'leaflet/dist/leaflet.css';
 
-const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
+function MapClickClear({ onClear }: { onClear: () => void }) {
+  useMapEvents({
+    click: () => onClear(),
+  });
+  return null;
+}
 
 export default function App() {
   const [selectedStore, setSelectedStore] = useState<StoreLocation | null>(null);
@@ -151,9 +157,6 @@ export default function App() {
 
   return (
     <div className="flex flex-col h-[100dvh] w-full bg-[#0f2b1d] text-[#f7f5ed] overflow-hidden select-none">
-      {/* Quota Defense Banner */}
-      <QuotaBanner />
-
       {/* Top Header - Mobile First, Clean & Compact */}
       <Header totalStoresCount={STORES.length} />
 
@@ -193,34 +196,29 @@ export default function App() {
           />
         </button>
 
-        {/* Full-Bleed Google Map (The Primary Hero Experience) */}
+        {/* Full-bleed OpenStreetMap — no API key, production-safe for public GitHub Pages */}
         <main className="flex-1 relative h-full w-full">
-          <APIProvider
-            apiKey={API_KEY}
-            language="tr"
-            region="TR"
-          >
             <div className="w-full h-full relative">
-              <Map
-                mapId="DEMO_MAP_ID"
-                defaultCenter={ALANYA_CENTER}
-                defaultZoom={12}
-                gestureHandling="greedy"
-                disableDefaultUI={false}
-                clickableIcons={false}
-                onClick={() => setSelectedStore(null)}
-                internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
-                className="w-full h-full"
-                style={{ width: '100%', height: '100%' }}
+              <MapContainer
+                center={[ALANYA_CENTER.lat, ALANYA_CENTER.lng]}
+                zoom={12}
+                className="w-full h-full z-0 store-map"
+                scrollWheelZoom
+                attributionControl
               >
-                {/* Dynamic Smooth Camera Pan Controller */}
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" rel="noopener noreferrer" target="_blank">CARTO</a>'
+                  url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                  subdomains="abcd"
+                  maxZoom={19}
+                />
+
                 <MapController
                   selectedStore={selectedStore}
                   userLocation={userLocation}
                   focusUser={focusUser}
                 />
 
-                {/* 100% Transparent Pins for all Visible Stores */}
                 {visibleStores.map((store) => (
                   <MapMarker
                     key={store.id}
@@ -230,23 +228,12 @@ export default function App() {
                   />
                 ))}
 
-                {/* User Location Radar Marker */}
-                {userLocation && (
-                  <AdvancedMarker
-                    position={userLocation}
-                    title="Mevcut Konumunuz"
-                    zIndex={70}
-                  >
-                    <div className="relative flex items-center justify-center w-8 h-8 pointer-events-none">
-                      <div className="absolute w-8 h-8 rounded-full bg-sky-500/35 user-pulse-ring" />
-                      <div className="relative w-4 h-4 rounded-full bg-sky-500 border-2 border-white shadow-lg" />
-                    </div>
-                  </AdvancedMarker>
-                )}
-              </Map>
+                {userLocation && <UserLocationMarker position={userLocation} />}
+                <MapClickClear onClear={() => setSelectedStore(null)} />
+              </MapContainer>
 
               {/* Floating Filter Chips over the Map (Mobile & Desktop) */}
-              <div className="absolute top-3 left-3 right-3 sm:right-auto z-20 flex items-center gap-1.5 overflow-x-auto pb-1 pointer-events-auto">
+              <div className="absolute top-3 left-3 right-3 sm:right-auto z-[1100] flex items-center gap-1.5 overflow-x-auto pb-1 pointer-events-auto">
                 <div className="glass-panel p-1 rounded-xl flex items-center gap-1 shadow-lg border border-[#d6b85f]/30">
                   <button
                     onClick={() => setMapFilter('all')}
@@ -284,7 +271,7 @@ export default function App() {
               </div>
 
               {/* Floating GPS Button on Map */}
-              <div className="absolute top-3 right-3 z-20 pointer-events-auto">
+              <div className="absolute top-3 right-3 z-[1100] pointer-events-auto">
                 <button
                   type="button"
                   onClick={handleLocateMe}
@@ -314,7 +301,7 @@ export default function App() {
 
               {/* Single Unified Store Detail Card (Mobile & Desktop) */}
               {selectedStore && (
-                <div className="absolute z-30 pointer-events-auto bottom-16 left-2.5 right-2.5 sm:left-4 sm:right-4 md:bottom-6 md:right-6 md:left-auto md:w-[380px] md:max-w-md animate-in slide-in-from-bottom duration-200">
+                <div className="absolute z-[1200] pointer-events-auto bottom-16 left-2.5 right-2.5 sm:left-4 sm:right-4 md:bottom-6 md:right-6 md:left-auto md:w-[380px] md:max-w-md animate-in slide-in-from-bottom duration-200">
                   <div className="glass-panel p-3.5 sm:p-4 rounded-2xl shadow-2xl border border-[#d6b85f]/50 bg-[#0f2b1d]/95 backdrop-blur-xl">
                     <div className="flex gap-2.5 sm:gap-3 mb-2.5 items-start">
                       {/* Store Atmosphere Image Thumbnail */}
@@ -407,7 +394,7 @@ export default function App() {
                         className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold bg-[#d6b85f] text-[#0f2b1d] hover:bg-[#e6ca79] transition-all shadow-sm active:scale-95"
                       >
                         <Navigation className="w-3.5 h-3.5" />
-                        Google Maps ile Yol Tarifi
+                        Yol Tarifi
                       </a>
 
                       {selectedStore.isFlagship && (
@@ -456,7 +443,7 @@ export default function App() {
               )}
 
               {/* Mobile Bottom Navigation Bar (Persistent on Mobile) */}
-              <div className="md:hidden absolute bottom-2 left-2.5 right-2.5 z-20 pointer-events-auto">
+              <div className="md:hidden absolute bottom-2 left-2.5 right-2.5 z-[1100] pointer-events-auto">
                 <div className="glass-panel p-1.5 rounded-2xl flex items-center justify-between gap-1 shadow-2xl border border-[#d6b85f]/30">
                   <button
                     onClick={() => setMobileDrawerOpen(true)}
@@ -477,7 +464,6 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </APIProvider>
         </main>
       </div>
 

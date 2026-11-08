@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useMap } from '@vis.gl/react-google-maps';
+import { useMap } from 'react-leaflet';
 import { StoreLocation } from '../data/stores';
 
 interface MapControllerProps {
@@ -12,17 +12,13 @@ export function MapController({ selectedStore, userLocation, focusUser }: MapCon
   const map = useMap();
 
   useEffect(() => {
-    if (!map) return;
-
     if (focusUser && userLocation) {
-      map.panTo({ lat: userLocation.lat, lng: userLocation.lng });
-      map.setZoom(14);
+      map.flyTo([userLocation.lat, userLocation.lng], 14, { duration: 0.8 });
       return;
     }
 
     if (selectedStore) {
-      map.panTo({ lat: selectedStore.lat, lng: selectedStore.lng });
-      map.setZoom(15);
+      map.flyTo([selectedStore.lat, selectedStore.lng], 15, { duration: 0.7 });
     }
   }, [map, selectedStore, userLocation, focusUser]);
 

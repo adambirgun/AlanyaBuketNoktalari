@@ -1,6 +1,5 @@
 {
   "name": "Balcony Flowers · Alanya Buket Satış Noktaları",
-  "description": "Alanya'daki 9 Balcony Flowers buket satış noktasını Google Maps ile keşfedin, en yakın noktayı bulun ve yol tarifi alın.",
-  "requestFramePermissions": ["geolocation"],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "description": "Alanya'daki Balcony Flowers buket satış noktalarını haritada keşfedin, en yakın noktayı bulun ve yol tarifi alın.",
+  "requestFramePermissions": ["geolocation"]
 }
