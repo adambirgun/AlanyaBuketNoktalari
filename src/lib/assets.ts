@@ -8,5 +8,6 @@ export function assetUrl(path: string): string {
 export const ICONS = {
   balcony: () => assetUrl('balcony.png'),
   migros: () => assetUrl('migros-pin.png'),
-  favicon: () => assetUrl('favicon.svg'),
+  favicon: () => assetUrl('favicon-32x32.png'),
+  appleTouchIcon: () => assetUrl('apple-touch-icon.png'),
 } as const;
