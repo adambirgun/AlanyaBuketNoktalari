@@ -7,6 +7,6 @@ export function assetUrl(path: string): string {
 
 export const ICONS = {
   balcony: () => assetUrl('balcony.png'),
-  migros: () => assetUrl('migros-balcony-pin.png'),
+  migros: () => assetUrl('migros-pin.png'),
   favicon: () => assetUrl('favicon.svg'),
 } as const;
