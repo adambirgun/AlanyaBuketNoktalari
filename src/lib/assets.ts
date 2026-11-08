@@ -6,7 +6,10 @@ export function assetUrl(path: string): string {
 }
 
 export const ICONS = {
-  balcony: () => assetUrl('balcony.png'),
+  /** Header / brand mark — official Balcony Flower & Cafe logo */
+  brandLogo: () => assetUrl('apple-touch-icon.png'),
+  /** Map pin for Balcony stores */
+  balcony: () => assetUrl('apple-touch-icon.png'),
   migros: () => assetUrl('migros-pin.png'),
   favicon: () => assetUrl('favicon-32x32.png'),
   appleTouchIcon: () => assetUrl('apple-touch-icon.png'),

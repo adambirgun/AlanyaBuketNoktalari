@@ -130,49 +130,51 @@
 
 .marker-icon-shell img {
   display: block;
-  /* Mobile-first: comfortable tap size without covering the map */
-  width: 48px !important;
-  height: 48px !important;
+  /* Mobile-first: readable for average adult eyes, easy to tap */
+  width: 56px !important;
+  height: 56px !important;
   object-fit: contain;
   background: transparent;
   pointer-events: none;
   user-select: none;
+  border-radius: 9999px;
 }
 
 .marker-wrap[data-kind='migros'] .marker-icon-shell img {
-  width: 44px !important;
-  height: 44px !important;
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 0;
 }
 
 .marker-wrap.is-selected .marker-icon-shell img {
-  width: 56px !important;
-  height: 56px !important;
+  width: 64px !important;
+  height: 64px !important;
 }
 
 .marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
-  width: 52px !important;
-  height: 52px !important;
+  width: 60px !important;
+  height: 60px !important;
 }
 
 @media (min-width: 768px) {
   .marker-icon-shell img {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .marker-wrap[data-kind='migros'] .marker-icon-shell img {
     width: 42px !important;
     height: 42px !important;
   }
 
-  .marker-wrap[data-kind='migros'] .marker-icon-shell img {
-    width: 38px !important;
-    height: 38px !important;
-  }
-
   .marker-wrap.is-selected .marker-icon-shell img {
-    width: 50px !important;
-    height: 50px !important;
+    width: 54px !important;
+    height: 54px !important;
   }
 
   .marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
-    width: 46px !important;
-    height: 46px !important;
+    width: 50px !important;
+    height: 50px !important;
   }
 }
 
@@ -194,11 +196,11 @@
 }
 
 .marker-label {
-  margin-top: 3px;
-  padding: 3px 9px;
+  margin-top: 4px;
+  padding: 4px 10px;
   border-radius: 9999px;
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: 13px;
+  line-height: 1.25;
   font-weight: 700;
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -216,8 +218,8 @@
   }
 
   .marker-wrap.is-selected .marker-label {
-    font-size: 13px;
-    padding: 4px 10px;
+    font-size: 15px;
+    padding: 5px 12px;
   }
 }
 
