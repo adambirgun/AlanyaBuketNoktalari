@@ -130,51 +130,49 @@
 
 .marker-icon-shell img {
   display: block;
-  /* Mobile-first: readable for average adult eyes, easy to tap */
-  width: 56px !important;
-  height: 56px !important;
+  /* Mobile-first: clear pin size without covering the map */
+  width: 64px !important;
+  height: 64px !important;
   object-fit: contain;
   background: transparent;
   pointer-events: none;
   user-select: none;
-  border-radius: 9999px;
 }
 
 .marker-wrap[data-kind='migros'] .marker-icon-shell img {
-  width: 52px !important;
-  height: 52px !important;
-  border-radius: 0;
-}
-
-.marker-wrap.is-selected .marker-icon-shell img {
-  width: 64px !important;
-  height: 64px !important;
-}
-
-.marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
   width: 60px !important;
   height: 60px !important;
 }
 
+.marker-wrap.is-selected .marker-icon-shell img {
+  width: 74px !important;
+  height: 74px !important;
+}
+
+.marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
+  width: 70px !important;
+  height: 70px !important;
+}
+
 @media (min-width: 768px) {
   .marker-icon-shell img {
-    width: 46px !important;
-    height: 46px !important;
-  }
-
-  .marker-wrap[data-kind='migros'] .marker-icon-shell img {
-    width: 42px !important;
-    height: 42px !important;
-  }
-
-  .marker-wrap.is-selected .marker-icon-shell img {
     width: 54px !important;
     height: 54px !important;
   }
 
-  .marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
+  .marker-wrap[data-kind='migros'] .marker-icon-shell img {
     width: 50px !important;
     height: 50px !important;
+  }
+
+  .marker-wrap.is-selected .marker-icon-shell img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
+    width: 60px !important;
+    height: 60px !important;
   }
 }
 

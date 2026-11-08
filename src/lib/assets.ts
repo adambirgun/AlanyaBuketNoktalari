@@ -9,7 +9,7 @@ export const ICONS = {
   /** Header / brand mark — official Balcony Flower & Cafe logo */
   brandLogo: () => assetUrl('apple-touch-icon.png'),
   /** Map pin for Balcony stores */
-  balcony: () => assetUrl('apple-touch-icon.png'),
+  balcony: () => assetUrl('balcony.png'),
   migros: () => assetUrl('migros-pin.png'),
   favicon: () => assetUrl('favicon-32x32.png'),
   appleTouchIcon: () => assetUrl('apple-touch-icon.png'),

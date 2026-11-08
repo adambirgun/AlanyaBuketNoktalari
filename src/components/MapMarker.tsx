@@ -20,8 +20,8 @@ export function MapMarker({ store, isSelected, onSelect }: MapMarkerProps) {
       L.divIcon({
         className: 'balcony-map-marker',
         // Wide enough for short label; height covers icon + optional label
-        iconSize: [100, 84],
-        iconAnchor: [50, 68],
+        iconSize: [112, 96],
+        iconAnchor: [56, 78],
         html: `
           <div class="marker-wrap${isSelected ? ' is-selected' : ''}" data-kind="${isBalcony ? 'balcony' : 'migros'}">
             ${isSelected ? '<span class="marker-glow" aria-hidden="true"></span>' : ''}
