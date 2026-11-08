@@ -13,26 +13,27 @@ interface MapMarkerProps {
 export function MapMarker({ store, isSelected, onSelect }: MapMarkerProps) {
   const isBalcony = store.kind === 'balcony';
   const iconSrc = isBalcony ? ICONS.balcony() : ICONS.migros();
-  const size = isBalcony ? (isSelected ? 52 : 44) : isSelected ? 48 : 40;
+  const label = store.mapLabel || store.neighborhood;
 
   const icon = useMemo(
     () =>
       L.divIcon({
         className: 'balcony-map-marker',
-        iconSize: [Math.max(size, 96), size + 22],
-        iconAnchor: [Math.max(size, 96) / 2, size + 18],
+        // Wide enough for short label; height covers icon + optional label
+        iconSize: [88, 72],
+        iconAnchor: [44, 58],
         html: `
           <div class="marker-wrap${isSelected ? ' is-selected' : ''}" data-kind="${isBalcony ? 'balcony' : 'migros'}">
             ${isSelected ? '<span class="marker-glow" aria-hidden="true"></span>' : ''}
             <div class="marker-icon-shell">
-              <img src="${iconSrc}" alt="" width="${size}" height="${size}" decoding="async" draggable="false" />
+              <img src="${iconSrc}" alt="" decoding="async" draggable="false" />
               ${store.isFlagship ? '<span class="marker-star" aria-hidden="true">★</span>' : ''}
             </div>
-            <span class="marker-label">${escapeHtml(store.neighborhood)}</span>
+            <span class="marker-label">${escapeHtml(label)}</span>
           </div>
         `,
       }),
-    [iconSrc, isBalcony, isSelected, size, store.isFlagship, store.neighborhood]
+    [iconSrc, isBalcony, isSelected, label, store.isFlagship]
   );
 
   return (

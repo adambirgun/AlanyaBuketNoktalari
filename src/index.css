@@ -130,41 +130,62 @@
 
 .marker-icon-shell img {
   display: block;
-  width: 44px !important;
-  height: 44px !important;
-  max-width: 52px !important;
-  max-height: 52px !important;
+  /* Mobile-first: comfortable tap size without covering the map */
+  width: 48px !important;
+  height: 48px !important;
   object-fit: contain;
   background: transparent;
   pointer-events: none;
   user-select: none;
 }
 
+.marker-wrap[data-kind='migros'] .marker-icon-shell img {
+  width: 44px !important;
+  height: 44px !important;
+}
+
 .marker-wrap.is-selected .marker-icon-shell img {
+  width: 56px !important;
+  height: 56px !important;
+}
+
+.marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
   width: 52px !important;
   height: 52px !important;
 }
 
-.marker-wrap[data-kind='migros'] .marker-icon-shell img {
-  width: 40px !important;
-  height: 40px !important;
-}
+@media (min-width: 768px) {
+  .marker-icon-shell img {
+    width: 42px !important;
+    height: 42px !important;
+  }
 
-.marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
-  width: 48px !important;
-  height: 48px !important;
+  .marker-wrap[data-kind='migros'] .marker-icon-shell img {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .marker-wrap.is-selected .marker-icon-shell img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
+    width: 46px !important;
+    height: 46px !important;
+  }
 }
 
 .marker-star {
   position: absolute;
   top: -2px;
   right: -2px;
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border-radius: 9999px;
   background: #d6b85f;
   color: #0f2b1d;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 900;
   display: flex;
   align-items: center;
@@ -173,24 +194,38 @@
 }
 
 .marker-label {
-  margin-top: 2px;
-  padding: 2px 8px;
+  margin-top: 3px;
+  padding: 3px 9px;
   border-radius: 9999px;
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   color: #f7f5ed;
-  background: rgba(15, 43, 29, 0.88);
-  border: 1px solid rgba(214, 184, 95, 0.35);
+  background: rgba(15, 43, 29, 0.92);
+  border: 1px solid rgba(214, 184, 95, 0.4);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   pointer-events: none;
+}
+
+/* Mobile: hide all pin labels except the selected one — less clutter, clearer read */
+@media (max-width: 767px) {
+  .marker-wrap:not(.is-selected) .marker-label {
+    display: none;
+  }
+
+  .marker-wrap.is-selected .marker-label {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
 }
 
 .marker-wrap.is-selected .marker-label {
   background: #d6b85f;
   color: #0f2b1d;
   border-color: rgba(15, 43, 29, 0.35);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .user-dot-wrap {

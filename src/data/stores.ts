@@ -8,6 +8,8 @@ export interface StoreLocation {
   kind: 'balcony' | 'migros';
   badge: string;
   neighborhood: string;
+  /** Short pin label for the map (mobile-friendly). */
+  mapLabel: string;
   address: string;
   hours: string;
   openHour: number;
@@ -43,6 +45,7 @@ export const STORES: StoreLocation[] = [
     kind: 'balcony',
     badge: 'Ana Mağaza & Çiçek Kafe',
     neighborhood: 'Oba',
+    mapLabel: 'Oba',
     address: 'Oba Mah. Eczacılar Cad. Çalış Sitesi A Blok No:12/A, Alanya',
     hours: '08:30 - 22:30 · Her gün açık',
     openHour: 8,
@@ -64,6 +67,7 @@ export const STORES: StoreLocation[] = [
     kind: 'balcony',
     badge: 'AVM Satış Noktası',
     neighborhood: 'Cumhuriyet (Alanyum)',
+    mapLabel: 'Alanyum',
     address: 'Cumhuriyet Mah. Keykubat Blv. No:219 Alanyum AVM Giriş Katı, Alanya',
     hours: '10:00 - 22:00 · Her gün açık',
     openHour: 10,
@@ -85,6 +89,7 @@ export const STORES: StoreLocation[] = [
     kind: 'migros',
     badge: 'Migros Buket Standı',
     neighborhood: 'Kızlar Pınarı (Otogar)',
+    mapLabel: 'Otogar',
     address: 'Kızlar Pınarı Mah. Şerifler Sok. Alanya Şehirlerarası Otogar Yanı',
     hours: '08:30 - 22:00 · Her gün açık',
     openHour: 8,
@@ -105,6 +110,7 @@ export const STORES: StoreLocation[] = [
     kind: 'migros',
     badge: 'Migros Buket Standı',
     neighborhood: 'Güller Pınarı (Sahil)',
+    mapLabel: 'Sahil',
     address: 'Güller Pınarı Mah. Ahmet Tokuş Bulvarı Sahil Yolu, Alanya',
     hours: '08:30 - 22:00 · Her gün açık',
     openHour: 8,
@@ -125,6 +131,7 @@ export const STORES: StoreLocation[] = [
     kind: 'migros',
     badge: '5M Migros Buket Standı',
     neighborhood: 'Cumhuriyet',
+    mapLabel: '5M',
     address: 'Cumhuriyet Mah. Ahmet Tokuş Bulvarı 5M Migros İçi, Alanya',
     hours: '09:00 - 22:00 · Her gün açık',
     openHour: 9,
@@ -145,6 +152,7 @@ export const STORES: StoreLocation[] = [
     kind: 'migros',
     badge: 'MMM Migros Buket Standı',
     neighborhood: 'Tosmur',
+    mapLabel: 'Tosmur',
     address: 'Tosmur Mah. Sahil Cad. No:2 Dimçayı Giriş Bölgesi, Alanya',
     hours: '08:30 - 22:00 · Her gün açık',
     openHour: 8,
@@ -165,6 +173,7 @@ export const STORES: StoreLocation[] = [
     kind: 'migros',
     badge: 'MMM Migros Buket Standı',
     neighborhood: 'Mahmutlar (Vatan Cad.)',
+    mapLabel: 'Vatan',
     address: 'Mahmutlar Mah. Vatan Cad. No:18, Alanya',
     hours: '08:30 - 22:00 · Her gün açık',
     openHour: 8,
@@ -185,6 +194,7 @@ export const STORES: StoreLocation[] = [
     kind: 'migros',
     badge: 'MMM Migros Buket Standı',
     neighborhood: 'Mahmutlar (Barbaros Cad.)',
+    mapLabel: 'Barbaros',
     address: 'Mahmutlar Mah. Barbaros Cad. No:142, Alanya',
     hours: '08:30 - 22:00 · Her gün açık',
     openHour: 8,
@@ -205,6 +215,7 @@ export const STORES: StoreLocation[] = [
     kind: 'migros',
     badge: 'Migros Buket Standı',
     neighborhood: 'Kargıcak',
+    mapLabel: 'Kargıcak',
     address: 'Kargıcak Mah. Sahil Yolu Cad. No:62/A, Alanya',
     hours: '08:30 - 22:00 · Her gün açık',
     openHour: 8,
