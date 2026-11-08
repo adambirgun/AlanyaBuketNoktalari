@@ -8,3 +8,4 @@ coverage/
 !.env.example
 .gmp_cache/
 bun.lock
+README.md
