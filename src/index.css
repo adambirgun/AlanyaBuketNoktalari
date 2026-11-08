@@ -130,10 +130,29 @@
 
 .marker-icon-shell img {
   display: block;
+  width: 44px !important;
+  height: 44px !important;
+  max-width: 52px !important;
+  max-height: 52px !important;
   object-fit: contain;
   background: transparent;
   pointer-events: none;
   user-select: none;
+}
+
+.marker-wrap.is-selected .marker-icon-shell img {
+  width: 52px !important;
+  height: 52px !important;
+}
+
+.marker-wrap[data-kind='migros'] .marker-icon-shell img {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.marker-wrap[data-kind='migros'].is-selected .marker-icon-shell img {
+  width: 48px !important;
+  height: 48px !important;
 }
 
 .marker-star {

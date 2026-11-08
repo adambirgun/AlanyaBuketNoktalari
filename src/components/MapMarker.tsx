@@ -22,17 +22,17 @@ export function MapMarker({ store, isSelected, onSelect }: MapMarkerProps) {
         iconSize: [Math.max(size, 96), size + 22],
         iconAnchor: [Math.max(size, 96) / 2, size + 18],
         html: `
-          <div class="marker-wrap${isSelected ? ' is-selected' : ''}">
+          <div class="marker-wrap${isSelected ? ' is-selected' : ''}" data-kind="${isBalcony ? 'balcony' : 'migros'}">
             ${isSelected ? '<span class="marker-glow" aria-hidden="true"></span>' : ''}
             <div class="marker-icon-shell">
-              <img src="${iconSrc}" alt="" width="${size}" height="${size}" draggable="false" />
+              <img src="${iconSrc}" alt="" width="${size}" height="${size}" decoding="async" draggable="false" />
               ${store.isFlagship ? '<span class="marker-star" aria-hidden="true">★</span>' : ''}
             </div>
             <span class="marker-label">${escapeHtml(store.neighborhood)}</span>
           </div>
         `,
       }),
-    [iconSrc, isSelected, size, store.isFlagship, store.neighborhood]
+    [iconSrc, isBalcony, isSelected, size, store.isFlagship, store.neighborhood]
   );
 
   return (

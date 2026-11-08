@@ -207,10 +207,10 @@ export default function App() {
                 attributionControl
               >
                 <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" rel="noopener noreferrer" target="_blank">CARTO</a>'
-                  url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-                  subdomains="abcd"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" target="_blank">OpenStreetMap</a>'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   maxZoom={19}
+                  crossOrigin
                 />
 
                 <MapController
